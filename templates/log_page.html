@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/static/signup.css">
+    <link rel="stylesheet" type="text/css" href="/static/navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+<body>
+
+    <div class = "row">
+      <div id="import_navbar"></div>
+    </div>
+  <form class="modal-content" action="/login" method="post">
+    <div class="container">
+      <h1>Log In</h1>
+      <p>♡love you♡</p>
+      <hr>
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter username" name="username" required>
+
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter password" name="password" required>
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Log In</button>
+      </div>
+    </div>
+  </form>
+  <script type="text/javascript">
+        $(document).ready( function() {
+            $("#import_navbar").load("/templates/navbar.html")});
+    </script>
+
+</body>
+</html>

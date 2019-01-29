@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Items</title>
+    <link rel="stylesheet" type="text/css" href="/static/navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
+</head>
+<body>
+  <div id = "title" class = "row">
+         <h1>Pery & Gilad's puppets</h1>
+         <h2>Items</h2>
+    </div>
+    <div class = "row">
+      <div id="import_navbar"></div>
+    </div>
+
+  puppets = {{puppets}}
+  {%for puppet in puppets%}  
+    <div class="container-fluid">    
+      <div class="row space">
+        <div style="text-align: center; height: 100%"  class="col-md-6">
+            <div class="card">
+                <img src= {{puppet.image_url}} alt="John" style="width:100%">
+                <h1>{{puppet.user_name}}</h1>
+                <p>{{puppet.description}}</p>
+                <p>price {{puppet.price}}
+                <div style="margin: 25px 0;"></div>
+                <p><button type="button" onclick="high_five('{{ user.user_name }}')" class="btn btn-outline-primary">High Five</button></p>
+            </div>
+        </div>
+      </div>
+    </div>    
+  {%endfor%}
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $("#import_navbar").load("/templates/navbar.html")});
+  </script>
+</body>
+</html>

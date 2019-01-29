@@ -5,7 +5,11 @@ from sqlalchemy.orm import sessionmaker
 
 if __name__ == '__main__':
     # LOCAL
-    engine = create_engine('sqlite:///lecture.db') #Change "lecture.db" to whatever your .db file's name is.
+<<<<<<< HEAD
+    engine = create_engine('sqlite:///pupshop.db') #Change "lecture.db" to whatever your .db file's name is.
+=======
+    engine = create_engine('sqlite:///database.db') #Change "lecture.db" to whatever your .db file's name is.
+>>>>>>> df9082e269797c7699e482dcd78e4f9deeaa0714
 
     metadata = MetaData(engine)
 
