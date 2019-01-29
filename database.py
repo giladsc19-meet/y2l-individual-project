@@ -47,7 +47,7 @@ def add_puppet (image_url, name, description, price, amount):
 		puppet = Puppet(image_url = image_url, name = name, description = description, price = price, amount = amount, is_there = True)
 	session.add(puppet)
 	session.commit()
-
+add_puppet("sdasdasd.png", "gilad", "useless", 1, 1)
 ##########_showing commands_##########
 def get_all_puppets():
 	return session.query(Puppet).all()
@@ -55,8 +55,8 @@ def get_all_puppets():
 ##########_sign up_##########
 def valid_username(username):
 	names = session.query(User).filter_by(username = username).all()
-	for name in names:
-		if name.username == username:
+	for nam in names:
+		if nam.username == username:
 			return False
 	return True
 

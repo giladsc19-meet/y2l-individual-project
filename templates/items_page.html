@@ -17,7 +17,6 @@
       <div id="import_navbar"></div>
     </div>
 
-  puppets = {{puppets}}
   {%for puppet in puppets%}  
     <div class="container-fluid">    
       <div class="row space">
@@ -28,7 +27,6 @@
                 <p>{{puppet.description}}</p>
                 <p>price {{puppet.price}}
                 <div style="margin: 25px 0;"></div>
-                <p><button type="button" onclick="high_five('{{ user.user_name }}')" class="btn btn-outline-primary">High Five</button></p>
             </div>
         </div>
       </div>
