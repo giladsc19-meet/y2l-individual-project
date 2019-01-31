@@ -1,0 +1,29 @@
+}
+.addcart_btn:hover{
+
+    color: #4ADFCC;
+    background-color: white;
+    border-color: #4ADFCC;
+}
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /*max-width: 400px;*/
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    position: fixed;
+    /*width: 200px;*/
+    left: 250px;
+  }
+
+#pup_image{
+
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    position: relative;
+    top: 25px;
+    margin-bottom: 25px;
+}

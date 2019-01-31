@@ -1,6 +1,6 @@
-body {
-	background-color: rgb(241, 210, 254);
+body{
+	background-image: url("/static/img/background.png");
 }
-h1{
-	margin-left: 50px !important;
-}
+#for_title{
+	padding-left: 50px;
+}k

@@ -2,39 +2,61 @@
 <html>
 <head>
   <title>Items</title>
-    <link rel="stylesheet" type="text/css" href="/static/navbar.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/main.css">
+  <link rel="stylesheet" type="text/css" href="/static/navbar.css">
+  <link rel="stylesheet" type="text/css" href="/static/pupcards.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
   <div id = "title" class = "row">
-         <h1>Pery & Gilad's puppets</h1>
-         <h2>Items</h2>
+         <h1 id="for_title">Items</h1>
     </div>
     <div class = "row">
       <div id="import_navbar"></div>
     </div>
 
-  {%for puppet in puppets%}  
-    <div class="container-fluid">    
-      <div class="row space">
-        <div style="text-align: center; height: 100%"  class="col-md-6">
-            <div class="card">
-                <img src= {{puppet.image_url}} alt="John" style="width:100%">
-                <h1>{{puppet.user_name}}</h1>
-                <p>{{puppet.description}}</p>
-                <p>price {{puppet.price}}
-                <div style="margin: 25px 0;"></div>
-            </div>
+<div class="container-fluid">
+  <div class="row">
+    {% for i in range(len_puppets) %}
+      {% if i % 3 == 0 %}
+        </div>
+        <div class="row">
+      {% endif %}
+      <div class="card">
+        <div class="col-sm-4">
+          <img id= "pup_image" src= {{puppets[i].image_url}} alt="John">
+          <h1>{{puppets[i].name}}</h1>
+          <p>{{puppets[i].description}}</p>
+          <p>price {{puppets[i].price}}</p>
+          <button id="addcart_btn" type="button" onclick="addCart({{puppets[i].id}}); return true;">Add to Cart</button>
         </div>
       </div>
-    </div>    
-  {%endfor%}
+    {% endfor %}
+    </div>
+</div>
+
+<div id="loader"></div>
+
   <script type="text/javascript">
     $(document).ready( function() {
       $("#import_navbar").load("/templates/navbar.html")});
   </script>
+
+  <script type="text/javascript">
+    function addCart(inp_id) {
+      {% if username %}
+      $("#loader").load("/add-cart/{{username}}/" + inp_id.toString());
+      {% else %}
+      alert("You are not logged in, you cannot add to your cart.");
+      {% endif %}
+      return true;
+    }
+  </script>
+  
 </body>
 </html>

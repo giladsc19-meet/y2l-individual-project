@@ -3,7 +3,7 @@ from model import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import relationship, sessionmaker
 
-engine = create_engine('sqlite:///pupshop.db')
+engine = create_engine('sqlite:///pupshop.db?check_same_thread=False')
 Base.metadata.create_all(engine)
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
@@ -47,7 +47,7 @@ def add_puppet (image_url, name, description, price, amount):
 		puppet = Puppet(image_url = image_url, name = name, description = description, price = price, amount = amount, is_there = True)
 	session.add(puppet)
 	session.commit()
-add_puppet("sdasdasd.png", "gilad", "useless", 1, 1)
+
 ##########_showing commands_##########
 def get_all_puppets():
 	return session.query(Puppet).all()
@@ -73,4 +73,12 @@ def valid_info(username, password):
 	return False
 
 
+def get_items_by_id(list_ids):
+	items = list()
+	for i in list_ids:
+		puppet = session.query(Puppet).filter_by(id=i).first()
+		items.append(puppet)
+	return items
 
+add_puppet("/static/img/photo(1).jpg", "gilad", "very buetiful animal", 100000, 1)
+add_puppet("/static/img/photo(1).jpg", "gilad", "very buetiful animal", 100000, 1)

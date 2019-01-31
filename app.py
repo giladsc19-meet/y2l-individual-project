@@ -39,7 +39,7 @@ def sign_up():
             user = get_user_by_username(username)
             print (user)
             login_session['username'] = username
-            username = login_session['username']
+            login_session.modified = True
             return render_template('home_page.html', username = username)
         elif valid_username(username) == False:
             message = "username is taken! choose another one :)"
@@ -51,21 +51,38 @@ def sign_up():
 @app.route('/items')
 def items():
     if 'username' in login_session:
-        username = login_session['username']
         puppets = get_all_puppets()
-        return render_template('items_page.html', puppets = puppets, is_logged = True, username = username)
+        return render_template('items_page.html', puppets = puppets, is_logged = True, username = login_session['username'], len_puppets=len(puppets), user=login_session['username'])
     else:
         puppets = get_all_puppets()
-        return render_template('items_page.html', puppets = puppets, is_logged = False)
+        return render_template('items_page.html', puppets = puppets, is_logged = False, len_puppets=len(puppets))
         
 # @app.route('/puppet/<int:puppet_id>')
 # def puppet(puppet_id):
 #     puppet=session.query(Puppets).filter_by("id=puppet_id").first()
 # return render_template('puppet.html', puppet=puppet)
 
+@app.route("/add-cart/<string:username>/<int:item_id>")
+def add_cart(username, item_id):
+    print("GOT HERE")
+    if "cart" in login_session:
+        login_session["cart"] += [item_id]
+    else:
+        login_session["cart"] = list()
+        login_session["cart"] += [item_id]
+    login_session.modified = True
+    print(login_session["cart"])
+    return ""
+
 @app.route('/cart') #/<int[]:puppets_id
 def cart():
-    return render_template('cart_page.html')
+    print(login_session)
+    if "cart" in login_session:
+        user_cart = get_items_by_id(login_session['cart'])
+        print(user_cart)
+        return render_template('cart_page.html', cart=user_cart, len_puppets=len(user_cart) )
+    else:
+        return render_template('cart_page.html', cart=[], len_puppets=0)
 
 @app.route('/buynow',methods=['GET','POST'])
 def buynow():
@@ -75,9 +92,11 @@ def buynow():
 def templates(filename):
     return render_template(filename)
 
+
 if __name__ == '__main__':
     app.run(debug=True)
- 
+
+    
 # def do_admin_login():
 # if request.form['password'] == 'password' and request.form['username'] == 'admin':
 # session['logged_in'] = True
